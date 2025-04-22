@@ -1,0 +1,91 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/src/assets/user/images/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THAPV Pharmacity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    window.global = window;
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    // Configs
+    let liveChatBaseUrl = document.location.protocol + '//' + 'livechat.fpt.ai/v36/src'
+    let LiveChatSocketUrl = 'livechat.fpt.ai:443'
+    let FptAppCode = '33648a4e86b387bbe6dbeab8fcfc0049'
+    let FptAppName = 'THAPV Pharmacity'
+    // Define custom styles
+    let CustomStyles = {
+      // header
+      headerBackground: 'linear-gradient(86.7deg, #59B2F4FF 0.85%, #77AAC1FF 98.94%)',
+      headerTextColor: '#ffffffff',
+      headerLogoEnable: true,
+      headerLogoLink: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/medical/logo_head.svg',
+      headerText: 'THAPV Pharmacity',
+      // main
+      primaryColor: '#5AB2F3FF',
+      secondaryColor: '#ecececff',
+      primaryTextColor: '#ffffffff',
+      secondaryTextColor: '#000000DE',
+      buttonColor: '#5AB2F3B3',
+      buttonTextColor: '#ffffffff',
+      bodyBackgroundEnable: true,
+      bodyBackgroundLink: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/medical/body.png',
+      avatarBot: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/medical/logo_head.svg',
+      sendMessagePlaceholder: 'Xin mời nhập tên vào đây',
+      // float button
+      floatButtonLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/medical/logo_head.svg',
+      floatButtonTooltip: 'Tôi có thể giúp gì cho bạn?',
+      floatButtonTooltipEnable: true,
+      // start screen
+      customerLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/medical/logo_head.svg',
+      customerWelcomeText: 'Mời nhập tên bạn vào',
+      customerButtonText: 'Bắt đầu',
+      prefixEnable: false,
+      prefixType: 'radio',
+      prefixOptions: ["Anh", "Chị"],
+      prefixPlaceholder: 'Danh xưng',
+      // custom css
+      css: ''
+    }
+    // Get bot code from url if FptAppCode is empty
+    if (!FptAppCode) {
+      let appCodeFromHash = window.location.hash.substr(1)
+      if (appCodeFromHash.length === 32) {
+        FptAppCode = appCodeFromHash
+      }
+    }
+    // Set Configs
+    let FptLiveChatConfigs = {
+      appName: FptAppName,
+      appCode: FptAppCode,
+      themes: '',
+      styles: CustomStyles
+    }
+    // Append Script
+    let FptLiveChatScript = document.createElement('script')
+    FptLiveChatScript.id = 'fpt_ai_livechat_script'
+    FptLiveChatScript.src = liveChatBaseUrl + '/static/fptai-livechat.js'
+    document.body.appendChild(FptLiveChatScript)
+    // Append Stylesheet
+    let FptLiveChatStyles = document.createElement('link')
+    FptLiveChatStyles.id = 'fpt_ai_livechat_script'
+    FptLiveChatStyles.rel = 'stylesheet'
+    FptLiveChatStyles.href = liveChatBaseUrl + '/static/fptai-livechat.css'
+    document.body.appendChild(FptLiveChatStyles)
+    // Init
+    FptLiveChatScript.onload = function () {
+      fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
+    }
+  </script>
+</body>
+
+</html>

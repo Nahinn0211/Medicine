@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@user/*": [
+        "src/user/*"
+      ],
+      "@admin/*": [
+        "src/admin/*"
+      ],
+      "@models/*": [
+        "src/models/*"
+      ]
+    }
+  }
+}
